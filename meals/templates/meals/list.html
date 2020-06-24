@@ -1,0 +1,5 @@
+<h1>Meals</h1>
+
+{% for meal in meal_list %}
+<h3><a href="{% url 'meals:meal_detail' meal.slug %}">{{meal}}</a></h3>
+{% endfor %}
