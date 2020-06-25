@@ -1,9 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %}{% block title %}
+Meal Detail
+{% endblock %} {% block content %}
 <div class="main-wrap">
   <div class="cover_1">
     <div
       class="img_bg"
-      style="background-image: url(img/slider-1.jpg);"
+      style="background-image: url({% static 'img/slider-1.jpg'%})"
       data-stellar-background-ratio="0.5"
     >
       <div class="container">
