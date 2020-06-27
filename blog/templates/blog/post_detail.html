@@ -49,7 +49,7 @@ Post Detail
           <div class="tag-widget post-tag-container mb-5 mt-5">
             <div class="tagcloud">
               {% for tag in post_detail.tags.all %}
-              <a href="#" class="tag-cloud-link">{{tag.name}}</a>
+              <a href="{% url 'blog:post_by_tag' tag %}" class="tag-cloud-link">{{tag.name}}</a>
               {% endfor %}
             </div>
           </div>
@@ -229,7 +229,7 @@ Post Detail
               <h3>Categories</h3>
               {% for category in categories %}
               <li>
-                <a href="#">{{category}}</a>
+                <a href="{% url 'blog:post_by_category' category %}">{{category}}</a>
               </li>
               {% endfor %}
             </div>
@@ -238,8 +238,8 @@ Post Detail
             <h3>Tag Cloud</h3>
             <div class="tagcloud">
 
-              {% for tag in post_detail.tags.all %}
-              <a href="#" class="tag-cloud-link">{{tag.name}}</a>
+              {% for tag in all_tags %}
+              <a href="{% url 'blog:post_by_tag' tag %}" class="tag-cloud-link">{{tag}}</a>
               {% endfor %}
             </div>
           </div>

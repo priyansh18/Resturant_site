@@ -1,19 +1,45 @@
 from django.shortcuts import render
-from .models import Post,Category
-
+from .models import Post, Category
+from taggit.models import Tag
 # Create your views here.
-def post_list(request):
-  post_list = Post.objects.all()
-  context = {
-    'post_list':post_list
-  }
-  return render(request,'blog/post_list.html',context)
 
-def post_detail(request,id):
-  post_detail = Post.objects.get(id=id)
-  categories = Category.objects.all()
-  context = {
-    'post_detail':post_detail,
-    'categories':categories,
-  }
-  return render(request,'blog/post_detail.html',context)
+
+def post_list(request):
+    post_list = Post.objects.all()
+    context = {
+        'post_list': post_list
+    }
+    return render(request, 'blog/post_list.html', context)
+
+
+def post_detail(request, id):
+    post_detail = Post.objects.get(id=id)
+    categories = Category.objects.all()
+    all_tags = Tag.objects.all()
+
+    context = {
+        'post_detail': post_detail,
+        'categories': categories,
+        'all_tags':all_tags,
+    }
+    return render(request, 'blog/post_detail.html', context)
+
+
+def post_by_tag(request, tag):
+    post_by_tag = Post.objects.filter(tags__name__in=[tag])
+
+    context = {
+        'post_list': post_by_tag,
+    }
+    return render(request, 'blog/post_list.html', context)
+
+
+def post_by_category(request, category):
+    print("AR")
+    post_by_category = Post.objects.filter(
+        category__category_name__in=[category])
+    print(post_by_category) 
+    context = {
+        'post_list': post_by_category,
+    }
+    return render(request, 'blog/post_list.html', context)

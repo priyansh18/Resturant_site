@@ -22,10 +22,10 @@ class Post(models.Model):
         verbose_name_plural = 'posts'  
 
 class Category(models.Model) :
-  name = models.CharField(max_length=50 ) 
+  category_name = models.CharField(max_length=50 ) 
 
   def __str__(self):
-    return self.name
+    return self.category_name
 
   class Meta:
         verbose_name = 'category'
