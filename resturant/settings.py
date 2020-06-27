@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'meals',
     'reservation',
     'crispy_forms',
+    'blog',
 ]
 
 MIDDLEWARE = [
