@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'reservation',
     'crispy_forms',
     'blog',
+    'aboutus',
 ]
 
 MIDDLEWARE = [
