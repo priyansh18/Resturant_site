@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog',
     'aboutus',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'spriy88@gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS =  False
+EMAIL_PORT =  1025
