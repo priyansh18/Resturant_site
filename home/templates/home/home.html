@@ -114,7 +114,7 @@
         <div class="text">
           <h3>{{meal.name}}</h3>
           <p>
-            {{meal.description}}
+            {{meal.description|truncatewords:15}}
           </p>
           <p class="price">Rs. {{meal.price}}</p>
         </div>
@@ -163,7 +163,7 @@
                     >
                   </h3>
                   <p>
-                    {{meal.description}}
+                    {{meal.description|truncatewords:15}}
                   </p>
                 </div>
                 <div class="price order-2">
@@ -206,17 +206,17 @@
               />
             </figure>
             <div class="media-body">
-              <h3><a href="#">{{post.title}}</a></h3>
+              <h3><a href="{% url 'blog:post_detail' post.id %}">{{post.title}}</a></h3>
               <p class="post-meta">
                 <span
                   ><span class="fa fa-calendar"></span>{{post.created}}</span
                 >
               </p>
               <p>
-                {{post.content}}
+                {{post.content|truncatewords:15}}
               </p>
               <p>
-                <a href="#" class="btn btn-primary btn-outline-primary btn-sm"
+                <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary btn-outline-primary btn-sm"
                   >Read More</a
                 >
               </p>
@@ -243,7 +243,7 @@
             </figure>
             <div class="media-body">
               <h3>
-                <a href="#">{{latest_post.title}}</a>
+                <a href="{% url 'blog:post_detail' latest_post.id %}">{{latest_post.title}}</a>
               </h3>
               <p class="post-meta">
                 <span
@@ -252,10 +252,10 @@
                 >
               </p>
               <p>
-                {{layest_post.content}}
+                {{layest_post.content|truncatewords:15}}
               </p>
               <p>
-                <a href="#" class="btn btn-primary btn-outline-primary btn-sm"
+                <a href="{% url 'blog:post_detail' latest_post.id %}" class="btn btn-primary btn-outline-primary btn-sm"
                   >Read More</a
                 >
               </p>
