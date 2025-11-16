@@ -1,10 +1,13 @@
-import './PostEmployee.css';
-import { useEffect, useState } from 'react';
+import './UpdateEmployee.css';
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const PostEmployee = () => {
+const UpdateEmployee = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -17,16 +20,11 @@ const PostEmployee = () => {
     setData({ ...data, [name]: value });
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(data);
-
     try {
-      const response = await fetch('http://localhost:8080/api/employee', {
-        method: 'POST',
+      const response = await fetch('http://localhost:8080/api/employee/' + id, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -34,17 +32,31 @@ const PostEmployee = () => {
       });
       const json = await response.json();
       setData(json);
-      console.log(json);
       navigate('/');
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      try {
+        const response = await fetch(
+          'http://localhost:8080/api/employee/' + id
+        );
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchEmployee();
+  }, [id]);
+
   return (
     <>
       <div className="center-form">
-        <h1> Post New Employee</h1>
+        <h1> Update Employee</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicName">
             <Form.Label>Name</Form.Label>
@@ -87,7 +99,7 @@ const PostEmployee = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit" className="w-100">
-            Submit
+            Edit Employee
           </Button>
         </Form>
       </div>
@@ -95,4 +107,4 @@ const PostEmployee = () => {
   );
 };
 
-export default PostEmployee;
+export default UpdateEmployee;

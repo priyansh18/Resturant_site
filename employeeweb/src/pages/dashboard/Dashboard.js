@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () =>{
-
+    const navigate = useNavigate();
     const [employees,setEmployees] = useState([]);
 
     const fetchEmployees = async()=>{
@@ -19,7 +21,27 @@ const Dashboard = () =>{
         fetchEmployees();
     },[])
 
-   
+    const handleDelete = async (id) =>{
+        try{
+            const response = await fetch("http://localhost:8080/api/employee/" + id, {
+                method: "DELETE"
+            });
+
+            if(response.ok){
+                setEmployees((prev)=>prev.filter((employee)=>employee.id !== id));
+            }
+            const json = await response.json();
+            setEmployees(json);
+            navigate("/");
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const handleUpdate = (id) =>{
+        navigate("/employee/" + id);
+        
+    }
     return(
         <Container> 
             <div>
@@ -43,7 +65,10 @@ const Dashboard = () =>{
                                 <td>{employee.email}</td>
                                 <td>{employee.phone}</td>
                                 <td>{employee.department}</td>
-                                
+                                <td>
+                                    <Button variant="primary" onClick={()=>handleUpdate(employee.id)}>Update</Button>
+                                    <Button variant="danger" onClick={()=>handleDelete(employee.id)}>Delete</Button>
+                                </td>
                             </tr>
                         ))
                     }
