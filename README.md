@@ -1,30 +1,86 @@
-# PryFry - Restaurant Management System
+# PryFry - Restaurant Website
 
-A unified restaurant management platform combining menu management, employee operations, and reservation booking — powered by Spring Boot and React.
+A modern restaurant website with a dark elegant theme, gold accents, and full-stack architecture.
 
-## Modules
+**Live:** [pryfry-priyanshsinghal.vercel.app](https://pryfry-priyanshsinghal.vercel.app)
 
-### 1. Restaurant (from PryFry)
-- Menu catalog with categories
-- Blog with comments and tags
-- Chef profiles
-- Contact form
-- Table reservations
+## Preview
 
-### 2. Employee Management (from employee-web)
-- Full CRUD for employees
-- Department tracking
-- Spring Boot 3.x + JPA/MySQL backend
-- React 18 frontend
+| Home | Menu | Book Table |
+|------|------|------------|
+| Hero with full-width food photography | Dish cards with dotted price lines | Calendar appointment booking + reservation form |
 
-### 3. Appointment/Reservation Booking (from birdchime)
-- Weekly calendar view
-- Time-slot conflict detection
-- Upcoming appointments filtering
-- Book/cancel reservations
+## Features
+
+- **Home** - Hero section, feature highlights, about us with stats, popular dishes, chef preview, CTA banner
+- **Menu** - Category filter tabs, dish cards with price, prep time, and servings
+- **Chefs** - Chef profiles with bio and role
+- **Book Table** - Quick reservation form + weekly appointment calendar with time slots
+- **Blog** - Posts with tags, full article view, comments system
 
 ## Tech Stack
 
-- **Backend:** Java 17, Spring Boot 3.x, Spring Data JPA, MySQL, Maven
-- **Frontend:** React 18, Bootstrap 5, Axios
-- **Architecture:** Controller-Service-Repository pattern
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React 19, Vite, React Router |
+| **Backend API** | Java 17, Spring Boot 3.4, RestTemplate |
+| **Database Service** | Python 3, Django 5, Django REST Framework, SQLite |
+| **Deployment** | Vercel (frontend) |
+| **Styling** | Custom CSS, Playfair Display + Inter fonts |
+
+## Architecture
+
+```
+React (Vercel)  -->  Spring Boot (8080)  -->  Django DRF (8001)  -->  SQLite
+   frontend              backend               db_service            database
+```
+
+## Project Structure
+
+```
+PryFry/
+├── frontend/          # React app (Vite)
+│   ├── src/
+│   │   ├── pages/     # Home, Menu, Chefs, BookTable, Blog
+│   │   ├── components/# Navbar, Footer
+│   │   └── utils/     # API client
+│   └── public/images/ # Local food/chef/blog images
+├── backend/           # Spring Boot (proxies to Django)
+│   └── src/main/java/com/priyansh/employee/
+│       ├── controller/# REST controllers
+│       └── service/   # RestTemplate services
+├── db_service/        # Django + SQLite
+│   └── api/           # Models, serializers, views, admin
+└── docker-compose.yml # Run all services in Docker
+```
+
+## Run Locally
+
+### Frontend only
+```bash
+cd frontend && npm install && npm run dev
+```
+
+### Full stack (Django + Spring Boot in Docker)
+```bash
+# Start Django DB service
+cd db_service && pip3 install -r requirements.txt
+python3 manage.py migrate && python3 manage.py runserver 8001
+
+# Start Spring Boot (Docker)
+docker run -d --name pryfry-backend -p 8080:8080 \
+  -v $(pwd)/backend:/app -w /app maven:3.9-eclipse-temurin-17 \
+  bash -c "mvn spring-boot:run"
+
+# Start React
+cd frontend && npm run dev
+```
+
+## Design
+
+- Dark theme (`#1a1a1a` background)
+- Gold accents (`#c8a97e`)
+- Playfair Display serif headings
+- Inter sans-serif body text
+- Moody food photography
+- Fully responsive (mobile, tablet, desktop)

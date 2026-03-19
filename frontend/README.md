@@ -1,16 +1,50 @@
-# React + Vite
+# PryFry Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the PryFry restaurant website.
 
-Currently, two official plugins are available:
+**Live:** [pryfry-priyanshsinghal.vercel.app](https://pryfry-priyanshsinghal.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech
 
-## React Compiler
+- React 19 + Vite
+- React Router DOM
+- Custom CSS (dark theme, gold accents)
+- Playfair Display + Inter fonts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pages
 
-## Expanding the ESLint configuration
+| Page | Route | Description |
+|------|-------|-------------|
+| Home | `/` | Hero, features, about, dishes, chefs, CTA |
+| Menu | `/menu` | Filterable dish catalog with prices |
+| Chefs | `/chefs` | Chef cards with bios |
+| Book Table | `/book` | Reservation form + appointment calendar |
+| Blog | `/blog` | Posts, tags, comments |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run
+
+```bash
+npm install
+npm run dev
+```
+
+Opens at [localhost:5173](http://localhost:5173)
+
+## Build
+
+```bash
+npm run build
+```
+
+Output in `dist/` — deploy to Vercel, Netlify, or any static host.
+
+## API
+
+Points to `VITE_API_URL` (defaults to `http://localhost:8080`). Endpoints used:
+
+- `GET/POST /api/meals` — Meal catalog
+- `GET/POST /api/chefs` — Chef profiles
+- `GET/POST/DELETE /api/appointments` — Appointment booking
+- `GET/POST /api/reservations` — Table reservations
+- `GET/POST /api/posts` — Blog posts
+- `GET/POST /api/posts/:id/comments` — Comments
