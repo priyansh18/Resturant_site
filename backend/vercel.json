@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "babbackend",
+  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/server.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/api/appointments",
+      "dest": "/server.js",
+      "methods": ["GET", "POST", "DELETE"]
+    }
+  ]
+}
