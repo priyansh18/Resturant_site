@@ -50,3 +50,17 @@ out/
 
 # Vercel
 .vercel
+
+# Python
+__pycache__
+*.pyc
+db.sqlite3
+*.sqlite3
+
+# Java
+target/
+*.class
+*.jar
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
