@@ -2,7 +2,7 @@
 
 A modern restaurant website with a dark elegant theme, gold accents, and full-stack architecture.
 
-**Live:** [pryfry-priyanshsinghal.vercel.app](https://pryfry-priyanshsinghal.vercel.app)
+**Live:** [pryfry.priyanshsinghal.com](https://pryfry.priyanshsinghal.com)
 
 ## Preview
 
